@@ -15,21 +15,26 @@
             background: rgb(164, 144, 102);
         }
 
-        .header{
+        .header {
             height: 2.7vh;
             background-color: rgb(187, 153, 107)
         }
-        .footer{
-            height: 5vh;
+
+        .footer {
+            height: 7.5vh;
             background-color: rgb(187, 153, 107)
         }
+
         .butt {
             height: 100%;
-            width: 50%;
+            width: 33%;
             font-size: 1.25em;
             position: center;
-            margin-left: 25vw;
             font-family: 'Permanent Marker', cursive;
+        }
+
+        .sound {
+            width: 100%;
         }
 
         #word-input {
@@ -41,7 +46,7 @@
         #wrap {
             background: rgb(236, 223, 164);
             width: 100%;
-            height: 90vh;
+            height: 87.5vh;
             position: relative;
         }
 
@@ -117,20 +122,22 @@
 
 <body>
     <div class="header">
-     <div class="time">
-        Time Left:
-        <span id="time">0</span>
+        <div class="time">
+            Time Left:
+            <span id="time">0</span>
 
-     </div>
-        <div class="score">
-        Score:
-        <span id="score">0</span>
         </div>
+        <!-- <div class="score">
+            Score:
+            <span id="score">0</span>
+        </div> -->
     </div>
     <div>
         <div id="wrap">
+
             <div class="logo">PimEngDeeMa</div>
             <div class="logo2">PimEngDeeMa</div>
+
             <div class="all">
                 <div class="command">
                     <p class="head">Type The Given Word Within
@@ -139,36 +146,46 @@
                     <h2 class="lyrics" id="current-word">hello</h2>
                     <input type="text" placeholder="Start typing..." id="word-input" autofocus>
                     <h4 class="mt-3" id="message"></h4>
+                    <button class="butt" id="myBtn" onclick="startMatch()">Check</button>
+                    </audio>
                 </div>
             </div>
         </div>
-    
+
         <div class="footer">
-                <button class="butt" onclick="startMatch()">Check</button>
-            </div>
+            <audio controls autoplay loop class="sound">
+                <source src="Girls Like You.mp3" type="audio/mpeg">
+            </audio>
+        </div>
 
 
         <script>
             window.addEventListener('load', init);
-
+            var input = document.getElementById("word-input");
+            input.addEventListener("keyup", function (event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    document.getElementById("myBtn").click();
+                }
+            });
             // Globals
 
             // Available Levels
             const levels = {
-                jamiie: 100,
+                timee: 0,
             };
 
             // To change level
-            const currentLevel = levels.jamiie;
+            const currentLevel = levels.timee;
 
             let time = currentLevel;
             let score = 0;
             let isPlaying;
+            let wordIndex = 0;
 
             // DOM Elements
             const wordInput = document.querySelector('#word-input');
             const currentWord = document.querySelector('#current-word');
-            const scoreDisplay = document.querySelector('#score');
             const timeDisplay = document.querySelector('#time');
             const message = document.querySelector('#message');
             const seconds = document.querySelector('#seconds');
@@ -239,8 +256,8 @@
                 showWord(words);
                 // Start matching on word input
                 // wordInput.addEventListener('input', startMatch);
-                // Call countdown every second
-                setInterval(countdown, 1000);
+                // Call countime every second
+                setInterval(countime, 1000);
                 // Check game status
                 setInterval(checkStatus, 50);
             }
@@ -248,11 +265,12 @@
             // Start match
             function startMatch() {
                 if (matchWords()) {
+                    wordIndex++;
                     isPlaying = true;
                     time = currentLevel + 1;
                     showWord(words);
                     wordInput.value = '';
-                    score++;
+                    // score++;
                 }
 
                 // If score is -1, display 0
@@ -276,22 +294,16 @@
 
             // Pick & show random word
             function showWord(words) {
-                // Generate random array index
-                const randIndex = Math.floor(Math.random() * words.length);
-                // Output random word
-                currentWord.innerHTML = words[randIndex];
+                currentWord.innerHTML = words[wordIndex];
             }
 
-            // Countdown timer
-            function countdown() {
+            // countime timer
+            function countime() {
                 // Make sure time is not run out
-                if (time > 0) {
+                if (time >= 0) {
                     // Decrement
-                    time--;
-                } else if (time === 0) {
-                    // Game is over
-                    isPlaying = false;
-                }
+                    time++;
+                } 
                 // Show time
                 timeDisplay.innerHTML = time;
             }
