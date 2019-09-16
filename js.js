@@ -102,6 +102,9 @@
                     time = time;
                     showWord(words);
                     wordInput.value = '';
+                    if(countPagee == 1){
+                        document.getElementById('endbutton').style.display = 'inline-block';
+                    }
                 }
 
             }
@@ -129,8 +132,18 @@
                     // Decrement
                     time++;
                     result = time;
-
                 } 
                 // Show time
                 timeDisplay.innerHTML = time;
+                resultScore.innerHTML = result;
             }
+
+            function scrolltoBottom() {
+                window.scrollTo(0,document.body.scrollHeight);
+              }
+              
+              function reloadd(){
+                var elmnt = document.getElementById("header");
+                elmnt.scrollIntoView();
+                location.reload();
+              }

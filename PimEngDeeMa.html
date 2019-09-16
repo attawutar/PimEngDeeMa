@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="header">
+    <div id="header">
         <div class="count"> 
             Section:
             <span id="count">0</span>/52
@@ -43,13 +43,19 @@
                     </audio>
                 </div>
             </div>
-            <a class="button" href="end.html"><span>End</span></a>
+            <a class="button" id="endbutton" onclick="scrolltoBottom()" ><span>End</span></a>
         </div>
 
         <div class="footer">
             <audio controls autoplay loop class="sound">
                 <source src="Girls Like You.mp3" type="audio/mpeg">
             </audio>
+        </div>
+        <div id="endpage">
+            <div class="result">
+                Score : <span id="result">0</span>
+            </div>
+            <button class="buttt" onclick="reloadd()">Replay</button>
         </div>
         <script src="js.js"></script>
            
