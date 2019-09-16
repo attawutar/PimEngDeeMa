@@ -88,7 +88,7 @@
                 showWord(words);
 
                 // Call countime every second
-                time = setInterval(countime, 1000);
+                setInterval(countime, 1000);
 
             }
 
@@ -99,10 +99,9 @@
                     countPagee++;
                     countPage.innerHTML = countPagee;
                     isPlaying = true;
-                    time = time;
                     showWord(words);
                     wordInput.value = '';
-                    if(countPagee == 1){
+                    if(countPagee == 53){
                         document.getElementById('endbutton').style.display = 'inline-block';
                     }
                 }
@@ -131,16 +130,15 @@
                 if (time >= 0) {
                     // Decrement
                     time++;
-                    result = time;
                 } 
                 // Show time
                 timeDisplay.innerHTML = time;
-                resultScore.innerHTML = result;
             }
 
             function scrolltoBottom() {
                 window.scrollTo(0,document.body.scrollHeight);
-                clearInterval(time);
+                result = time;
+                resultScore.innerHTML = result;
               }
               
               function reloadd(){
