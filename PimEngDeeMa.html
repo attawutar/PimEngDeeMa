@@ -8,120 +8,15 @@
     <title>PimEngDeeMa</title>
     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Bree+Serif&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: sans-serif;
-            background: rgb(164, 144, 102);
-        }
-
-        .header {
-            height: 2.7vh;
-            background-color: rgb(187, 153, 107)
-        }
-
-        .footer {
-            height: 7.5vh;
-            background-color: rgb(187, 153, 107)
-        }
-
-        .butt {
-            height: 100%;
-            width: 33%;
-            font-size: 1.25em;
-            position: center;
-            font-family: 'Permanent Marker', cursive;
-        }
-
-        .sound {
-            width: 100%;
-        }
-
-        #word-input {
-            width: 80%;
-            position: relative;
-            font-size: 1em;
-        }
-
-        #wrap {
-            background: rgb(236, 223, 164);
-            width: 100%;
-            height: 87.5vh;
-            position: relative;
-        }
-
-        .time {
-            position: relative;
-            font-family: 'Bree Serif', serif;
-            font-size: 20px;
-            left: 90vw;
-            top: -6px;
-        }
-
-        .score {
-            position: relative;
-            font-family: 'Bree Serif', serif;
-            font-size: 20px;
-            left: 80vw;
-            top: -32.5px;
-        }
-
-        .logo {
-            position: relative;
-            left: 36vw;
-            top: 2.5vh;
-            margin: 0;
-            font-family: 'Permanent Marker', cursive;
-            font-size: 60px;
-            color: rgb(160, 160, 160);
-            z-index: 999;
-        }
-
-        .logo2 {
-            position: relative;
-            left: 35.5vw;
-            top: -9.5vh;
-            margin: 0;
-            font-family: 'Permanent Marker', cursive;
-            font-size: 60px;
-            color: rgb(0, 0, 0);
-            z-index: 1000;
-        }
-
-        .all {
-            text-align: center;
-            font-family: 'Bree Serif', serif;
-        }
-
-        .head {
-            font-size: 30px;
-        }
-
-        hr {
-            width: 80vw;
-        }
-
-        .lyrics {
-            text-align: center;
-            margin-left: 175px;
-            font-size: 40px;
-            width: 1200px;
-        }
-
-        input[type=text] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css.css">
 </head>
 
 <body>
     <div class="header">
+        <div class="count"> 
+            Section:
+            <span id="count">0</span>/52
+        </div>
         <div class="time">
             Time Left:
             <span id="time">0</span>
@@ -132,7 +27,6 @@
             <span id="score">0</span>
         </div> -->
     </div>
-    <div>
         <div id="wrap">
 
             <div class="logo">PimEngDeeMa</div>
@@ -140,8 +34,7 @@
 
             <div class="all">
                 <div class="command">
-                    <p class="head">Type The Given Word Within
-                        <span class="text-success" id="seconds">5</span> Seconds:</p>
+                    <p class="head">Type The Given Word
                     <hr>
                     <h2 class="lyrics" id="current-word">hello</h2>
                     <input type="text" placeholder="Start typing..." id="word-input" autofocus>
@@ -150,6 +43,7 @@
                     </audio>
                 </div>
             </div>
+            <a class="button" href="end.html"><span>End</span></a>
         </div>
 
         <div class="footer">
@@ -157,166 +51,9 @@
                 <source src="Girls Like You.mp3" type="audio/mpeg">
             </audio>
         </div>
+        <script src="js.js"></script>
+           
 
-
-        <script>
-            window.addEventListener('load', init);
-            var input = document.getElementById("word-input");
-            input.addEventListener("keyup", function (event) {
-                if (event.keyCode === 13) {
-                    event.preventDefault();
-                    document.getElementById("myBtn").click();
-                }
-            });
-            // Globals
-
-            // Available Levels
-            const levels = {
-                timee: 0,
-            };
-
-            // To change level
-            const currentLevel = levels.timee;
-
-            let time = currentLevel;
-            let score = 0;
-            let isPlaying;
-            let wordIndex = 0;
-
-            // DOM Elements
-            const wordInput = document.querySelector('#word-input');
-            const currentWord = document.querySelector('#current-word');
-            const timeDisplay = document.querySelector('#time');
-            const message = document.querySelector('#message');
-            const seconds = document.querySelector('#seconds');
-
-            const words = [
-                'Spent 24 hours, I need more hours with you',
-                'You spent the weekend getting even, ooh',
-                'We spent the late nights making things right between us',
-                'But now it’s all good, babe',
-                'Roll that back wood, babe',
-                'And play me close',
-                'Cause girls like you run ’round with guys like me',
-                'Til sun down when I come through',
-                'I need a girl like you, yeah yeah',
-                'Girls like you love fun, and yeah, me too',
-                'What I want when I come through',
-                'I need a girl like you, yeah yeah',
-                'Yeah yeah yeah, yeah yeah yeah',
-                'I need a girl like you, yeah yeah',
-                'Yeah yeah yeah, yeah yeah yeah',
-                'I need a girl like you',
-                'I spent last night on the last flight to you',
-                'Took a whole day up tryna get way up, ooh',
-                'We spent the daylight tryna make things right between us',
-                'But now it’s all good, babe',
-                'Roll that back wood, babe',
-                'And play me close',
-                'Cause girls like you run ’round with guys like me',
-                'Til sun down when I come through',
-                'I need a girl like you, yeah yeah',
-                'Girls like you love fun, and yeah, me too',
-                'What I want when I come through',
-                'I need a girl like you, yeah yeah',
-                'Yeah yeah yeah, yeah yeah yeah',
-                'I need a girl like you, yeah yeah',
-                'Yeah yeah yeah, yeah yeah yeah',
-                'I need a girl like you, yeah yeah',
-                'I need a girl like you, yeah yeah',
-                'I need a girl like you',
-                'Maybe it’s 6:45',
-                'Maybe I’m barely alive',
-                'Maybe you’ve taken my shit for the last time',
-                'Maybe I know that I’m drunk',
-                'Maybe I know you’re the one',
-                'Maybe you’re thinking it’s better if you drive',
-                'Cause girls like you run ’round with guys like me',
-                'Til sun down when I come through',
-                'I need a girl like you, yeah',
-                'Cause girls like you run ’round with guys like me',
-                'Til sun down when I come through',
-                'I need a girl like you, yeah yeah',
-                'Girls like you love fun, and yeah, me too',
-                'What I want when I come through',
-                'I need a girl like you, yeah yeah',
-                'Yeah yeah yeah, yeah yeah yeah',
-                'I need a girl like you, yeah yeah',
-                'Yeah yeah yeah, yeah yeah yeah',
-                'I need a girl like you'
-
-
-            ];
-
-            // Initialize Game
-            function init() {
-                // Show number of seconds in UI
-                seconds.innerHTML = currentLevel;
-                // Load word from array
-                showWord(words);
-                // Start matching on word input
-                // wordInput.addEventListener('input', startMatch);
-                // Call countime every second
-                setInterval(countime, 1000);
-                // Check game status
-                setInterval(checkStatus, 50);
-            }
-
-            // Start match
-            function startMatch() {
-                if (matchWords()) {
-                    wordIndex++;
-                    isPlaying = true;
-                    time = currentLevel + 1;
-                    showWord(words);
-                    wordInput.value = '';
-                    // score++;
-                }
-
-                // If score is -1, display 0
-                if (score === -1) {
-                    scoreDisplay.innerHTML = 0;
-                } else {
-                    scoreDisplay.innerHTML = score;
-                }
-            }
-
-            // Match currentWord to wordInput
-            function matchWords() {
-                if (wordInput.value === currentWord.innerHTML) {
-                    message.innerHTML = 'Correct!!!';
-                    return true;
-                } else {
-                    message.innerHTML = 'Try Again!!!';
-                    return false;
-                }
-            }
-
-            // Pick & show random word
-            function showWord(words) {
-                currentWord.innerHTML = words[wordIndex];
-            }
-
-            // countime timer
-            function countime() {
-                // Make sure time is not run out
-                if (time >= 0) {
-                    // Decrement
-                    time++;
-                } 
-                // Show time
-                timeDisplay.innerHTML = time;
-            }
-
-            // Check game status
-            function checkStatus() {
-                if (!isPlaying && time === 0) {
-                    message.innerHTML = 'Game Over!!!';
-                    score = -1;
-                }
-            }
-
-        </script>
 </body>
 
 </html>
