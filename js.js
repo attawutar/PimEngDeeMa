@@ -88,7 +88,7 @@
                 showWord(words);
 
                 // Call countime every second
-                setInterval(countime, 1000);
+                time = setInterval(countime, 1000);
 
             }
 
@@ -140,6 +140,7 @@
 
             function scrolltoBottom() {
                 window.scrollTo(0,document.body.scrollHeight);
+                clearInterval(time);
               }
               
               function reloadd(){
