@@ -103,7 +103,7 @@ function createSection(section) {
 }
 
 function checkKey() {
-    document.addEventListener('keyup', (e) => {
+    document.addEventListener('keypress', (e) => {
         console.log(e.key)
         console.log(songSections[nowSection][nowLetter])
         if (e.key === songSections[nowSection][nowLetter]) {

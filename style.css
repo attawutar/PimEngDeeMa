@@ -60,6 +60,7 @@ body {
   width: 100%;
   border: 1px white solid;
   color: white;
+  font-family: futura;
   background-color: #fff0;
   text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 40px #00f, 0 0 80px #00f, 0 0 90px #00f, 0 0 100px #00f, 0 0 150px #00f;
 }
@@ -84,6 +85,13 @@ audio {
 
 .time {
   position: absolute;
+  top: 12px;
+  right: 12px;
+  color: white;
+  display: none;
+}
+.section {
+  position: inline-block;
   top: 12px;
   right: 12px;
   color: white;
